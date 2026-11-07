@@ -1,22 +1,14 @@
 ## Done
-- Project structure (app/, training/, tests/, models/)
-- Training script (iris dataset, LogisticRegression, saved with joblib)
-- FastAPI app: /health and /predict endpoints
-- Automatic tests with pytest + TestClient
-- Dockerfile: image builds and runs correctly
-  - tested /health and /predict against the running container (curl)
+- Terraform (local, Docker provider):
+  - docker_image built from local Dockerfile
+  - docker_container running the image, ports mapped correctly
+  - variables.tf + variables.auto.tfvars: no more hardcoded values
+  - verified terraform plan / apply / destroy cycle
 
 ## Next session
-- Open an AWS account (if not done yet)
-  - enable MFA on the root account
-  - create a separate IAM user to work with day to day
-  - set a budget alarm
-  - configure the AWS CLI
-- Install Terraform
-- Write first Terraform file: create an S3 bucket for the model artifact
-- Later (not now):
-  - move Terraform state to a remote S3 backend
-  - ECR for the Docker image
-  - Lambda using the container image
-  - IAM role with least-privilege permissions
-  - GitHub Actions pipeline
+- If AWS account is ready:
+  - finish account setup (MFA, IAM user, budget alarm, CLI)
+  - write first real Terraform file for AWS: create an S3 bucket for the model
+- If not yet:
+  - try an `output` block (e.g. print the container's image_id after apply)
+  - try adding a docker_network resource and attaching the container to itg
