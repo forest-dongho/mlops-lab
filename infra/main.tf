@@ -7,8 +7,10 @@ terraform {
   }
 }
 
+# The resource provider 
 provider "docker" {}
 
+# Define a docker image using a local Dockerfile
 resource "docker_image" "serving_img" {
   name = "mlops-image"
   build {
@@ -19,12 +21,12 @@ resource "docker_image" "serving_img" {
   }
 }
 
-
+# Create a container using the image built by the previous definition
 resource "docker_container" "serving_container" {
   image = docker_image.serving_img.image_id
   name  = "mlops-container"
   ports {
-    internal = 80
-    external = 8000
+    internal = 8000
+    external = 8080
   }
 }
