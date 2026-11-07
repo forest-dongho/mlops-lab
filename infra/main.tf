@@ -12,11 +12,11 @@ provider "docker" {}
 
 # Define a docker image using a local Dockerfile
 resource "docker_image" "serving_img" {
-  name = "mlops-image"
+  name = var.image_name
   build {
-    context = "${path.module}/../"
+    context = var.context
     label = {
-      author : "edgar"
+      author : var.author
     }
   }
 }
@@ -24,9 +24,9 @@ resource "docker_image" "serving_img" {
 # Create a container using the image built by the previous definition
 resource "docker_container" "serving_container" {
   image = docker_image.serving_img.image_id
-  name  = "mlops-container"
+  name  = var.container_name
   ports {
-    internal = 8000
-    external = 8080
+    internal = var.container_internal_port
+    external = var.container_external_port
   }
 }
