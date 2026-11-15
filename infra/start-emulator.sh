@@ -1,5 +1,5 @@
 # source infra/start-emulator.sh
-# To run whenever we use want to use AWS emulator
+# To run whenever we want to use AWS emulator
 
 export AWS_ENDPOINT_URL=https://127.0.0.1:9297
 export AWS_SHARED_CREDENTIALS_FILE=~/.aws/emulator/9297/emulator_credentials
